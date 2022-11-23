@@ -538,10 +538,9 @@
                                     <a href="#reviews">(<span class="count">1</span> customer review)</a>
                                 </div>
                                 <div class="price-box">
-                                    <span class="new-price">$70.00</span>
-                                    <span class="old-price">$78.00</span>
+                                    <span class="new-price" id="price">$70.00</span>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla.</p>
+                                <p id="description"></p>
 
                                 <div class="single-add-to-cart">
                                     <form action="#" class="cart-quantity d-flex">
@@ -596,7 +595,7 @@
                         <div class="col-lg-12">
                             <div class="product_details_tab_content tab-content">
                                 <!-- Start Single Content -->
-                                <div class="product_tab_content tab-pane active" id="description" role="tabpanel">
+                                <div class="product_tab_content tab-pane active" role="tabpanel">
                                     <div class="product_description_wrap  mt-30">
                                         <div class="product_desc mb-30">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla.</p>
@@ -1132,6 +1131,19 @@
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+    <script>
+        const id = location.search.split("=")[1];
+        const formData = new formData();
+        fetch('watch/getWath', {
+            method: "POST",
+            body:formData
+        }).then(result=>{
+            console.log(result);
+            document.querySelector('.product-info').querySelector('h3').innerText = result.title;
+            document.querySelector('#price').innerText = result.price +" руб."
+            document.querySelector('#description').innerText = result.description;
+        })
+    </script>
 
 </body>
 

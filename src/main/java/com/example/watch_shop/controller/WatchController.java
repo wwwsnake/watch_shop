@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -40,5 +41,10 @@ public class WatchController {
     public ResponseEntity getWatches(){
         ArrayList<WatchEntity>  watchEntities = (ArrayList<WatchEntity>) watchRepo.findAll();//достаем все товары из базы в коллекцию
         return ResponseEntity.ok(watchEntities);
+    }
+    @PostMapping ("/getWatch")
+    public ResponseEntity getWatch(@ModelAttribute WatchEntity watch){
+        Optional<WatchEntity> watch1 = watchRepo.findById(watch.getId());
+        return ResponseEntity.ok(watch1);
     }
 }
